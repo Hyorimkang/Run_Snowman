@@ -31,8 +31,12 @@ int main() {
 			if (e.type == Event::Closed)
 				window.close();
 
-			//버튼 이미지
-
+			//버튼 눌렀을 때 이벤트
+			if (e.type == Event::MouseButtonPressed) {
+				if (e.mouseButton.button == Mouse::Middle) {
+					// TODO : 버튼을 누르면 화면전환이 되도록 하기
+				}
+			}
 		}
 		window.clear();
 		window.draw(img_bg);
