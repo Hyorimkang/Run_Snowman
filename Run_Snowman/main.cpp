@@ -3,25 +3,23 @@
 using namespace sf;
 
 
-
 int main() {
+	const int WIDTH = 1000;
+	const int HEIGHT = 500;
+
 	Texture texture;
 	Sprite img_bg;
-	RectangleShape btn;
-	btn.setPosition(500, 300);
-	btn.setFillColor(Color::White);
-	btn.setOutlineColor(Color::Black);
-	btn.setOutlineThickness(10);
+	Sprite game_bg;
 	 
 	//창만들기
-	RenderWindow window(VideoMode(1000, 500), "Run Snowman");
+	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
 	 
 	//파일 불러오기
 	texture.loadFromFile("img/main_bg.png");
 
 	//이미지 넣기
 	img_bg.setTexture(texture);
-	img_bg.setTextureRect(IntRect(0, 0, 1000, 500));
+	img_bg.setTextureRect(IntRect(0, 0, WIDTH, HEIGHT));
 
 	while (window.isOpen()) {
 		Event e;
@@ -31,18 +29,20 @@ int main() {
 			if (e.type == Event::Closed)
 				window.close();
 
-			//버튼 눌렀을 때 이벤트
-			if (e.type == Event::MouseButtonPressed) {
-				if (e.mouseButton.button == Mouse::Middle) {
-					// TODO : 버튼을 누르면 화면전환이 되도록 하기
-				}
+			//키 눌렀을 때 이벤트
+			if (Keyboard::isKeyPressed(Keyboard::Right)) {
+				// TODO : 키를 누르면 화면전환이 되도록 하기
+				//배경이미지
+				texture.loadFromFile("img/game_bg.png");
+
+				//배경 이미지 삽입
+				game_bg.setTexture(texture);
+				game_bg.setTextureRect(IntRect(0, 0, WIDTH, HEIGHT));
 			}
 		}
+	}
 		window.clear();
 		window.draw(img_bg);
-		window.draw(btn);
+		window.draw(game_bg);
 		window.display();
-	}
-
-	return 0;
 }
