@@ -10,6 +10,9 @@ public:
 	int x_;		//위치
 	int y_;
 	int dir_;	//방향
+	float jumpHeight = 1.5f;  // 점프 높이
+	float jumpSpeed = 4.5f;     // 점프 속도
+	bool isJumping = false;     // 현재 점프 중인지 여부
 
 	//속도증가
 	void Move() {
@@ -41,11 +44,18 @@ void Game() {
 	snowman_.setTexture(&charactor);
 	snowman_.setPosition(30, 230);
 
+	//snowman 초기 위치 설정
+	Vector2f initialPosition(30, 230);
+	snowman_.setPosition(initialPosition);
+
 	Snowman snowman;
 	snowman.x_ = 1, snowman.y_ = 2;	//snowman 위치
 	snowman.dir_;					//snowman 이동 방향
 	//snowman.speed_ = 3;				//snowman 속도
 
+	
+
+	Clock clock;
 
 	while (window.isOpen()) {
 		Event e;
@@ -63,13 +73,40 @@ void Game() {
 			snowman.dir_ = DIR_LEFT;
 		}
 
-		//키보드 누르면 움직이기
-		/*if (snowman.dir_ == DIR_RIGHT) {
-			snowman.x_++;
+		//마우스 왼쪽 커서 누르면 isJumping 활성화
+		if (e.type == sf::Event::MouseButtonPressed) {
+			if (e.mouseButton.button == sf::Mouse::Left && !snowman.isJumping) {
+				snowman.isJumping = true;
+				clock.restart();
+			}
 		}
-		else if (snowman.dir_ == DIR_LEFT) {
-			snowman.x_--;
-		}*/
+
+		//점프모션
+		if (snowman.isJumping) {
+			float elapsedTime = clock.getElapsedTime().asSeconds();
+			float jumpDistance = snowman.jumpSpeed * elapsedTime;
+
+			if (jumpDistance <= snowman.jumpHeight) {
+				snowman_.move(0.0f, -jumpDistance);
+			}
+			else {
+				snowman.isJumping = false;
+				clock.restart();
+			}
+		} 
+		else {
+			sf::Vector2f currentPosition = snowman_.getPosition();
+			if (currentPosition.y < initialPosition.y) {
+				// 중력 적용하여 떨어지기
+				float elapsedTime = clock.getElapsedTime().asSeconds();
+				float fallDistance = snowman.jumpSpeed * elapsedTime;
+				snowman_.move(0.0f, fallDistance);
+			}
+			else {
+				// 제자리로 돌아오면 초기 위치로 설정
+				snowman_.setPosition(initialPosition);
+			}
+		}
 		
 
 		window.clear();
@@ -78,7 +115,6 @@ void Game() {
 		window.draw(snowman_);
 		window.display();
 	}
-	
 }
 
 
