@@ -1,23 +1,14 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-#define DIR_RIGHT 0
-#define DIR_LEFT 1
 
 class Snowman {
 public:
-	int speed_; //속도
 	int x_;		//위치
 	int y_;
-	int dir_;	//방향
 	float jumpHeight = 1.5f;  // 점프 높이
 	float jumpSpeed = 4.5f;     // 점프 속도
 	bool isJumping = false;     // 현재 점프 중인지 여부
-
-	//속도증가
-	void Move() {
-		x_ += speed_;
-	}
 };
 
 void Game() {
@@ -27,6 +18,9 @@ void Game() {
 	Texture backgound;
 	Texture charactor;
 	Sprite game_bg(backgound);
+
+	Snowman snowman;
+	snowman.x_ = 1, snowman.y_ = 2;	//snowman 위치
 
 	//창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run_Snowman");
@@ -48,12 +42,6 @@ void Game() {
 	Vector2f initialPosition(30, 230);
 	snowman_.setPosition(initialPosition);
 
-	Snowman snowman;
-	snowman.x_ = 1, snowman.y_ = 2;	//snowman 위치
-	snowman.dir_;					//snowman 이동 방향
-	//snowman.speed_ = 3;				//snowman 속도
-
-	
 
 	Clock clock;
 
@@ -62,23 +50,14 @@ void Game() {
 		while (window.pollEvent(e)) {
 			if (e.type == Event::Closed)
 				window.close();
-
 		}
 
-		//키보드 동시에 처리되지 않도록
-		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			snowman.dir_ = DIR_RIGHT;
-		}
-		else if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			snowman.dir_ = DIR_LEFT;
-		}
+		
 
-		//마우스 왼쪽 커서 누르면 isJumping 활성화
-		if (e.type == sf::Event::MouseButtonPressed) {
-			if (e.mouseButton.button == sf::Mouse::Left && !snowman.isJumping) {
-				snowman.isJumping = true;
-				clock.restart();
-			}
+		//space bar 누르면 isJumping 활성화
+		if (Keyboard::isKeyPressed(Keyboard::Space)) {
+			snowman.isJumping = true;
+			clock.restart();
 		}
 
 		//점프모션
@@ -111,7 +90,6 @@ void Game() {
 
 		window.clear();
 		window.draw(game_bg);
-		//snowman.setPosition(snowman_.x_, snowman_.y_); // 스노우맨의 위치 업데이트
 		window.draw(snowman_);
 		window.display();
 	}
