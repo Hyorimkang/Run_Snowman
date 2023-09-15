@@ -23,6 +23,7 @@ void Game() {
 	Texture backgound;
 	Texture charactor;
 	Sprite game_bg(backgound);
+	Clock clock;	//시간측정을 위한 객체
 
 	Snowman snowman;
 	snowman.x_ = 30, snowman.y_ = 230;
@@ -33,7 +34,7 @@ void Game() {
 	//창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run_Snowman");
 	//1초동안 처리하는 횟수
-	window.setFramerateLimit(300);
+	window.setFramerateLimit(3);
 
 	//이미지로드
 	backgound.loadFromFile("img/game_bg.png");
@@ -48,8 +49,6 @@ void Game() {
 	snowman_.setTexture(&charactor);
 	snowman_.setPosition(snowman.x_, snowman.y_);
 
-
-	Clock clock;
 
 	while (window.isOpen()) {
 		Event e;
@@ -66,6 +65,36 @@ void Game() {
 				else if (e.key.code == Keyboard::Left) {
 					snowman_.move(-8, 0);
 				}
+			}
+		}
+
+		//점프
+		if (snowman.isJumping_) {
+			//경과시간 계산
+			float elapsed = clock.restart().asSeconds();
+			//점프 높이 감소
+			snowman.jumpHeight_ -= snowman.jumpSpeed_ * elapsed;
+			//위로 올라가기
+			snowman_.move(0, -snowman.jumpSpeed_ *elapsed);
+			//점프 종료
+			if (snowman.jumpHeight_ <= 0) {
+				snowman.isJumping_ = false;
+				snowman.jumpHeight_ = 0.0f;
+			}
+
+		}
+		else {
+			snowman.y_ = snowman_.getPosition().y;
+			//땅에 있는 동안만 중력 작용하도록
+			if (snowman.y_<230) {
+				float elapsed = clock.restart().asSeconds();
+				//내려가는 거리
+				float fallDistance = 0.5f * snowman.gravity_ * elapsed * elapsed;
+				//내려보내기
+				snowman_.move(snowman.x_, fallDistance);
+			}
+			else {
+				snowman_.setPosition(snowman_.getPosition().x, 230);
 			}
 		}
 
