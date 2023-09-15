@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
+#include <iostream>
+using namespace std;
+
 #define DIR_RIGHT	0
 #define DIR_LEFT	1
 
@@ -13,7 +16,7 @@ public:
 	float jumpSpeed_;   // 점프 속도
 	bool isJumping_;    // 현재 점프 중인지 여부
 	int gravity_;		//중력
-	RectangleShape sprite_;	//눈사람
+	RectangleShape snowman_;	//눈사람
 };
 
 void Game() {
@@ -34,7 +37,7 @@ void Game() {
 	//창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run_Snowman");
 	//1초동안 처리하는 횟수
-	window.setFramerateLimit(3);
+	window.setFramerateLimit(10);
 
 	//이미지로드
 	backgound.loadFromFile("img/game_bg.png");
@@ -45,9 +48,9 @@ void Game() {
 	game_bg.setTextureRect(IntRect(0, 0, WIDTH, HEIGHT));
 
 	//snowman 이미지 삽입
-	RectangleShape snowman_(Vector2f(100.0f, 150.0f));
-	snowman_.setTexture(&charactor);
-	snowman_.setPosition(snowman.x_, snowman.y_);
+	snowman.snowman_.setSize(Vector2f(100.0f, 150.0f));
+	snowman.snowman_.setTexture(&charactor);
+	snowman.snowman_.setPosition(snowman.x_, snowman.y_);
 
 
 	while (window.isOpen()) {
@@ -60,13 +63,17 @@ void Game() {
 					snowman.isJumping_ = true;
 				}
 				else if (e.key.code == Keyboard::Right) {
-					snowman_.move(8, 0);
+					snowman.snowman_.move(8, 0);
 				}
 				else if (e.key.code == Keyboard::Left) {
-					snowman_.move(-8, 0);
+					snowman.snowman_.move(-8, 0);
 				}
 			}
 		}
+
+		cout << "isJumping " << snowman.isJumping_ << endl;
+		cout << "jumpHeight_ " << snowman.jumpHeight_ << endl;
+		cout << "y" << snowman.snowman_.getPosition().y << endl;
 
 		//점프
 		if (snowman.isJumping_) {
@@ -75,7 +82,7 @@ void Game() {
 			//점프 높이 감소
 			snowman.jumpHeight_ -= snowman.jumpSpeed_ * elapsed;
 			//위로 올라가기
-			snowman_.move(0, -snowman.jumpSpeed_ *elapsed);
+			snowman.snowman_.move(0, -snowman.jumpSpeed_ *elapsed);
 			//점프 종료
 			if (snowman.jumpHeight_ <= 0) {
 				snowman.isJumping_ = false;
@@ -84,26 +91,23 @@ void Game() {
 
 		}
 		else {
-			snowman.y_ = snowman_.getPosition().y;
+			snowman.y_ = snowman.snowman_.getPosition().y;
 			//땅에 있는 동안만 중력 작용하도록
 			if (snowman.y_<230) {
 				float elapsed = clock.restart().asSeconds();
 				//내려가는 거리
 				float fallDistance = 0.5f * snowman.gravity_ * elapsed * elapsed;
 				//내려보내기
-				snowman_.move(snowman.x_, fallDistance);
+				snowman.snowman_.move(snowman.x_, fallDistance);
 			}
 			else {
-				snowman_.setPosition(snowman_.getPosition().x, 230);
+				snowman.snowman_.setPosition(snowman.snowman_.getPosition().x, 230);
 			}
 		}
 
-
-		
-
 		window.clear();
 		window.draw(game_bg);
-		window.draw(snowman_);
+		window.draw(snowman.snowman_);
 		window.display();
 	}
 }
