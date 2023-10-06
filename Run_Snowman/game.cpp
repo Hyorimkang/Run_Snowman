@@ -12,6 +12,9 @@ public:
 	int x_;
 	int y_;
 	Sprite snowman_;
+	bool isBottom = true;
+	bool isJumping = false;
+	int gravity;
 };
 
 class Tree {
@@ -65,6 +68,30 @@ void Game() {
 			if (e.type == Event::Closed)
 				window.close();
 		}
+
+		//space키를 누르면 동작
+		if (Keyboard::isKeyPressed(Keyboard::Space)) 
+		{
+			//점프가 가능한 상황일 때
+			if (snowman.isBottom && !snowman.isJumping) 
+			{
+				snowman.isJumping = true;
+				snowman.isBottom = false;
+			}
+		}
+		//점프할 때
+		if (snowman.isJumping) {
+			//점프하면 중력만큼 감소함 (위로 갈수록 y축이 감소하기 때문
+			snowman.y_ -= snowman.gravity;
+		}
+		else {
+			snowman.y_ += snowman.gravity;
+		}
+
+		//위치 재설정
+		tree.tree_.setPosition(tree.x_, tree.y_);
+		snowman.snowman_.setPosition(snowman.x_, snowman.y_);
+
 		window.clear();
 		window.draw(img_back);
 		window.draw(snowman.snowman_);
