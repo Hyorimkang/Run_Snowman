@@ -32,6 +32,12 @@ void Game() {
 	Sprite img_back = Sprite(background);
 	snowman.snowman_ = Sprite(charactor);
 
+	//´«»ç¶÷ À§Ä¡
+	snowman.x_ = 10;
+	snowman.y_ = 230;
+	snowman.snowman_.setPosition(snowman.x_, snowman.y_);
+
+
 	while (window.isOpen()) {
 		Event e;
 		while (window.pollEvent(e))
@@ -41,10 +47,11 @@ void Game() {
 				window.close();
 		}
 		window.clear();
+		window.draw(img_back);
+		window.draw(snowman.snowman_);
 		window.display();
 	}
 
-	return 0;
 }
 
 
