@@ -14,8 +14,17 @@ public:
 	Sprite snowman_;
 };
 
+class Tree {
+public:
+	int x_;
+	int y_;
+	int treeSpeed_;
+	Sprite tree_;
+};
+
 void Game() {
 	Snowman snowman;
+	Tree tree;
 
 	//창 만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
@@ -25,18 +34,28 @@ void Game() {
 	//이미지 로드
 	Texture background;
 	Texture charactor;
+	Texture obstacle;
 	background.loadFromFile("img/game_bg.png");
 	charactor.loadFromFile("img/snowman.png");
+	obstacle.loadFromFile("img/tree.png");
 
 	//Texture를 Sprite로 만들기
 	Sprite img_back = Sprite(background);
 	snowman.snowman_ = Sprite(charactor);
+	tree.tree_ = Sprite(obstacle);
 
 	//눈사람 위치
 	snowman.x_ = 10;
 	snowman.y_ = 230;
 	snowman.snowman_.setPosition(snowman.x_, snowman.y_);
 
+	//나무 위치
+	tree.x_ = 800;
+	tree.y_ = 230;
+	tree.tree_.setScale(0.9f, 0.8f);
+	tree.tree_.setPosition(tree.x_, tree.y_);
+	//나무 스피드
+	tree.treeSpeed_ = 5;
 
 	while (window.isOpen()) {
 		Event e;
@@ -49,6 +68,7 @@ void Game() {
 		window.clear();
 		window.draw(img_back);
 		window.draw(snowman.snowman_);
+		window.draw(tree.tree_);
 		window.display();
 	}
 
