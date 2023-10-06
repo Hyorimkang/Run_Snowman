@@ -11,6 +11,7 @@ class Snowman {
 public:
 	int x_;
 	int y_;
+	Sprite snowman_;
 };
 
 void Game() {
@@ -27,6 +28,9 @@ void Game() {
 	background.loadFromFile("img/game_bg.png");
 	charactor.loadFromFile("img/snowman.png");
 
+	//Texture를 Sprite로 만들기
+	Sprite img_back = Sprite(background);
+	snowman.snowman_ = Sprite(charactor);
 
 	while (window.isOpen()) {
 		Event e;
