@@ -31,6 +31,8 @@ void main() {
 	Sprite game_bg = Sprite(back);
 	button.button_ = Sprite(btn);
 
+	//이미지 위치
+	button.button_.setPosition(370, 350);
 
 	while (window.isOpen()) {
 		Event e;
