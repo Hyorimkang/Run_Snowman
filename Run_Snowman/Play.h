@@ -1,18 +1,20 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-using namespace sf;
-
 #include <iostream>
+
 using namespace std;
+using namespace sf;
 
 #include "Snowman.h";
 #include "Tree.h";
+#include "Gameover.h";
+#include "GameClear.h";
 
 #define WIDTH 1000
 #define HEIGHT 500
 
-class Play : public Snowman {
+class Play : public Snowman, public Tree{
 public:
 	void Game() {
 		Snowman snowman;

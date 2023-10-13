@@ -9,30 +9,22 @@ using namespace std;
 #define WIDTH 1000
 #define HEIGHT 500
 
-class Button{
-public:
-	int x_;
-	int y_;
-	Sprite button_;
-};
-
 void main() {
-	Button button;
 
 	// 창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
 
-	Texture back;
+	Texture background;
 	Texture btn;
-	back.loadFromFile("img/main_bg.png");
-	btn.loadFromFile("img/btn.png");
+	background.loadFromFile("img/main_bg.png");
+	btn.loadFromFile("img/btnstart.png");
 
 	//이미지 넣기
-	Sprite game_bg = Sprite(back);
-	button.button_ = Sprite(btn);
+	Sprite game_bg = Sprite(background);
+	Sprite button_ = Sprite(btn);
 
 	//이미지 위치
-	button.button_.setPosition(370, 350);
+	button_.setPosition(370, 350);
 
 	while (window.isOpen()) {
 		Event e;
@@ -50,7 +42,7 @@ void main() {
 		}
 		window.clear();
 		window.draw(game_bg);
-		window.draw(button.button_);
+		window.draw(button_);
 		window.display();
 	}
 }
