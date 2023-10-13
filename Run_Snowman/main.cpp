@@ -1,7 +1,6 @@
 ﻿#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <assert.h>
-#include "Play.h";
 
 using namespace sf;
 using namespace std;
@@ -37,7 +36,6 @@ void main() {
 			if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
 				Play p;
 				p.Game();
-
 			}
 		}
 		window.clear();

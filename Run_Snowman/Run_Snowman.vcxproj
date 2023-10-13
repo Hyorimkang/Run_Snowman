@@ -148,7 +148,8 @@
     <Image Include="img\tree.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gameover.h" />
+    <ClInclude Include="GameClear.h" />
+    <ClInclude Include="Gameover.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Snowman.h" />
     <ClInclude Include="Tree.h" />

@@ -9,7 +9,7 @@ using namespace sf;
 #define WIDTH 1000
 #define HEIGHT 500
 
-class Gameclear {
+class Gameclear : public Play{
 public:
 	void gameover() {
 		Texture background;
@@ -34,7 +34,8 @@ public:
 					window.close();
 
 				if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
-
+					Play p;
+					p.Game();
 				}
 			}
 			window.clear();
