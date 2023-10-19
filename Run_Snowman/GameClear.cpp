@@ -6,6 +6,9 @@
 using namespace std;
 using namespace sf;
 
+#include "Gameclear.h";
+#include "Play.h";
+
 #define WIDTH 1000
 #define HEIGHT 500
 

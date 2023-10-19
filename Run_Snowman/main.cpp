@@ -5,6 +5,8 @@
 using namespace sf;
 using namespace std;
 
+#include "Play.h";
+
 #define WIDTH 1000
 #define HEIGHT 500
 
