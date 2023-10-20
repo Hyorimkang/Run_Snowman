@@ -2,15 +2,16 @@
 #include <iostream>
 #include <assert.h>
 
+#include "Play.h"
+#include "Main.h"
+
 using namespace sf;
 using namespace std;
-
-#include "Play.h";
 
 #define WIDTH 1000
 #define HEIGHT 500
 
-void main() {
+void Start::start() {
 
 	// 창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
@@ -37,7 +38,7 @@ void main() {
 
 			if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
 				Play p;
-				p.Game();
+				p.game();
 			}
 		}
 		window.clear();
@@ -45,5 +46,12 @@ void main() {
 		window.draw(button_);
 		window.display();
 	}
+}
+
+int main() {
+	Start s;
+	s.start();
+
+	return 0;
 }
 

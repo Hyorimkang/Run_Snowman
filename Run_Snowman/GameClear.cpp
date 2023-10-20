@@ -3,48 +3,46 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-using namespace std;
-using namespace sf;
-
 #include "Gameclear.h";
 #include "Play.h";
+#include "main.h";
+
+using namespace std;
+using namespace sf;
 
 #define WIDTH 1000
 #define HEIGHT 500
 
-class Gameclear : public Play{
-public:
-	void gameover() {
-		Texture background;
-		Texture back;
-		background.loadFromFile("img/game_clear_bg.png");
-		back.loadFromFile("img/btnmain.png");
+void Gameclear :: gameclear() {
+	Texture background;
+	Texture back;
+	background.loadFromFile("img/game_clear_bg.png");
+	back.loadFromFile("img/btnmain.png");
 
-		Sprite img_back = Sprite(background);
-		Sprite btn_back = Sprite(back);
+	Sprite img_back = Sprite(background);
+	Sprite btn_back = Sprite(back);
 
-		btn_back.setPosition(370, 350);
+	btn_back.setPosition(370, 350);
 
-		// 창만들기
-		RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
+	// 창만들기
+	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
 
-		while (window.isOpen()) {
-			Event e;
-			while (window.pollEvent(e))
-			{
-				//윈도우의 x를 눌렀을 때 창이 닫아지도록 
-				if (e.type == Event::Closed)
-					window.close();
+	while (window.isOpen()) {
+		Event e;
+		while (window.pollEvent(e))
+		{
+			//윈도우의 x를 눌렀을 때 창이 닫아지도록 
+			if (e.type == Event::Closed)
+				window.close();
 
-				if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
-					Play p;
-					p.Game();
-				}
+			if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
+				Start s;
+				s.start();
 			}
-			window.clear();
-			window.draw(img_back);
-			window.draw(btn_back);
-			window.display();
 		}
+		window.clear();
+		window.draw(img_back);
+		window.draw(btn_back);
+		window.display();
 	}
-};
+}

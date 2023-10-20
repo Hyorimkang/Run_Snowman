@@ -149,8 +149,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameClear.cpp" />
+    <ClInclude Include="Gameclear.h" />
     <ClInclude Include="Gameover.cpp" />
     <ClInclude Include="Gameover.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="Play.cpp" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Snowman.h" />
