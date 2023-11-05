@@ -137,6 +137,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Play.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\game_bg.png" />
@@ -153,7 +154,6 @@
     <ClInclude Include="Gameover.cpp" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="Play.cpp" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Snowman.h" />
     <ClInclude Include="Tree.h" />

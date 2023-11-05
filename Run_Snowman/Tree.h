@@ -8,8 +8,8 @@ using namespace sf;
 
 class Tree {
 public:
-	int x_;
-	int y_;
+	int x_ = 0;
+	int y_ = 0;
 	int treeSpeed_;
 	Sprite tree_;
 };

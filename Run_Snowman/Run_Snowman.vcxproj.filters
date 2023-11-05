@@ -18,6 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Play.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\game_bg.png">
@@ -49,9 +52,6 @@
     <ClInclude Include="Snowman.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Play.cpp">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameClear.cpp">
       <Filter>소스 파일</Filter>
     </ClInclude>
@@ -61,13 +61,13 @@
     <ClInclude Include="Gameover.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Play.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Gameclear.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Main.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Play.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

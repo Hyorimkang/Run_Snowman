@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 
-class Gameover : public Play, public Start{
+class Gameover {
 public:
 	void gameover();
 };

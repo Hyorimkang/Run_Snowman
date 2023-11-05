@@ -8,10 +8,12 @@ using namespace sf;
 
 class Snowman {
 public:
-	int x_;
-	int y_;
+	int x_ = 0;
+	int y_ = 0;
 	Sprite snowman_;
 	bool isBottom = true;
 	bool isJumping = false;
-	int gravity;
+	float jumpSpeed = 0.0f;
+	float gravity = 0.5f;
+	float jumpHeight = 1.5f;
 };

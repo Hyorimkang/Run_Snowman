@@ -3,9 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "main.h"
 #include "Gameover.h"
 #include "Play.h"
-#include "main.h"
+
 
 using namespace std;
 using namespace sf;
@@ -47,7 +48,7 @@ void Gameover::gameover() {
 					p.game();
 				}
 				else if (btn_back.getGlobalBounds().contains(Vector2f(mousePosition))) {
-					Start s;
+					Main s;
 					s.start();
 				}
 			}

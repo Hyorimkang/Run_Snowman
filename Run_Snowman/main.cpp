@@ -11,7 +11,7 @@ using namespace std;
 #define WIDTH 1000
 #define HEIGHT 500
 
-void Start::start() {
+void Main::start() {
 
 	// 창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
@@ -49,7 +49,7 @@ void Start::start() {
 }
 
 int main() {
-	Start s;
+	Main s;
 	s.start();
 
 	return 0;
