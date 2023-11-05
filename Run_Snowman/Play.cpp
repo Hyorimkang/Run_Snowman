@@ -67,10 +67,33 @@ void Play::game() {
 			//윈도우의 x를 눌렀을 때 창이 닫아지도록 
 			if (e.type == Event::Closed)
 				window.close();
+
+			
+			if (Keyboard::isKeyPressed(Keyboard::Space)) {
+				if (snowman.isBottom && !snowman.isJumping) { //바닥에 있고 점프중이 아닐 때
+					snowman.isJumping = true;
+					snowman.isBottom = false;
+				}
+			}
+
+			//점프
+			if (snowman.isJumping) {
+				snowman.y_ -= snowman.gravity;
+			}
+			else {
+				snowman.y_ += snowman.gravity;
+			}
+
+			//프레임 밖으로 안나가도록
+			int test = HEIGHT - 230;
+			if (snowman.y_ >= test) {
+				snowman.y_ = 230;
+				snowman.isBottom = true;
+			}
+			if (snowman.y_ <= test - 230) snowman.isJumping = false;
+
+			snowmanXY(10, snowman.y_);
 		}
-		//위치 재설정
-		tree.tree_.setPosition(tree.x_, tree.y_);
-		snowman.snowman_.setPosition(snowman.x_, snowman.y_);
 
 		window.clear();
 		window.draw(img_back);
@@ -79,8 +102,4 @@ void Play::game() {
 		window.display();
 
 	}
-
-
-	
-
 }

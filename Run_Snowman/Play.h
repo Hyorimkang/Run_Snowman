@@ -14,6 +14,5 @@ class Play {
 public:
 	void snowmanXY(int x, int y);
 	void treeXY(int x, int y);
-	void jump();
 	void game();
 };
