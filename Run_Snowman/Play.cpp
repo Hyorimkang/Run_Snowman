@@ -87,12 +87,20 @@ void Play::game() {
 			//프레임 밖으로 안나가도록
 			int test = HEIGHT - 230;
 			if (snowman.y_ >= test) {
-				snowman.y_ = 230;
+				snowman.y_ = test;
 				snowman.isBottom = true;
 			}
 			if (snowman.y_ <= test - 230) snowman.isJumping = false;
 
 			snowmanXY(10, snowman.y_);
+
+			//나무
+			if (tree.x_ <= 0) {
+				tree.x_ = WIDTH;
+			}
+			else tree.x_ -= tree.treeSpeed_;
+
+			treeXY(tree.x_, 230);
 		}
 
 		window.clear();
