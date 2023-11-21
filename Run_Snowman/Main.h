@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 
-class Main : public Play{
+class Main{
 public:
 	void start();
 };

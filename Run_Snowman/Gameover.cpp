@@ -27,8 +27,8 @@ void Gameover::gameover() {
 	Sprite btn_back = Sprite(back);
 	Sprite btn_restart = Sprite(restart);
 
-	btn_back.setPosition(300, 350);
-	btn_restart.setPosition(400, 350);
+	btn_back.setPosition(170, 300);
+	btn_restart.setPosition(500, 300);
 
 	// 창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
@@ -40,19 +40,19 @@ void Gameover::gameover() {
 			//윈도우의 x를 눌렀을 때 창이 닫아지도록 
 			if (e.type == Event::Closed)
 				window.close();
-
-			if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
-				Vector2i mousePosition = Mouse::getPosition(window);
-				if (btn_restart.getGlobalBounds().contains(Vector2f(mousePosition))) {
-					Play p;
-					p.game();
-				}
-				else if (btn_back.getGlobalBounds().contains(Vector2f(mousePosition))) {
-					Main s;
-					s.start();
-				}
+		}
+		if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
+			Vector2i mousePosition = Mouse::getPosition(window);
+			if (btn_restart.getGlobalBounds().contains(Vector2f(mousePosition))) {
+				Play p;
+				p.game();
+			}
+			else if (btn_back.getGlobalBounds().contains(Vector2f(mousePosition))) {
+				Main s;
+				s.start();
 			}
 		}
+
 		window.clear();
 		window.draw(img_back);
 		window.draw(btn_back);

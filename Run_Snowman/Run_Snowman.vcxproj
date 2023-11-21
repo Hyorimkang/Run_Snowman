@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -151,7 +152,6 @@
   <ItemGroup>
     <ClInclude Include="GameClear.cpp" />
     <ClInclude Include="Gameclear.h" />
-    <ClInclude Include="Gameover.cpp" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Play.h" />

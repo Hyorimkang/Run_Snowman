@@ -27,8 +27,17 @@ void Play::treeXY(int x, int y) {
 	tree.x_ = x;
 	tree.y_ = y;
 
-	tree.tree_.setScale(0.9f, 0.8f);
+	tree.tree_.setScale(0.7f, 0.6f);
 	tree.tree_.setPosition(tree.x_, tree.y_);
+}
+
+bool Play::isColliding(Sprite charactor, Sprite obstacle) {
+	//두 sprite의 겉의 범위
+	FloatRect f1 = charactor.getGlobalBounds();
+	FloatRect f2 = obstacle.getGlobalBounds();
+
+	//충돌 여부 반환
+	return f1.intersects(f2);
 }
 
 void Play::game() {
@@ -52,13 +61,13 @@ void Play::game() {
 	tree.tree_ = Sprite(obstacle);
 
 	//눈사람 위치
-	snowmanXY(10, 230);
+	snowmanXY(30, 230);
 
 	//나무 위치
-	treeXY(800, 230);
+	treeXY(800, 300);
 
 	//나무 스피드
-	tree.treeSpeed_ = 5;
+	tree.treeSpeed_ = 10;
 
 	while (window.isOpen()) {
 		Event e;
@@ -76,33 +85,39 @@ void Play::game() {
 				}
 			}
 
-			//점프
-			if (snowman.isJumping) {
-				snowman.y_ -= snowman.gravity;
-			}
-			else {
-				snowman.y_ += snowman.gravity;
-			}
-
-			//프레임 밖으로 안나가도록
-			int test = HEIGHT - 230;
-			if (snowman.y_ >= test) {
-				snowman.y_ = test;
-				snowman.isBottom = true;
-			}
-			if (snowman.y_ <= test - 230) snowman.isJumping = false;
-
-			snowmanXY(10, snowman.y_);
-
-			//나무
-			if (tree.x_ <= 0) {
-				tree.x_ = WIDTH;
-			}
-			else tree.x_ -= tree.treeSpeed_;
-
-			treeXY(tree.x_, 230);
+			
+		}
+		//점프
+		if (snowman.isJumping) {
+			snowman.y_ -= snowman.gravity;
+		}
+		else {
+			snowman.y_ += snowman.gravity;
 		}
 
+		//프레임 밖으로 안나가도록
+		int test = HEIGHT - 230;
+
+		if (snowman.y_ >= test) {
+			snowman.y_ = test;
+			snowman.isBottom = true;
+		}
+		if (snowman.y_ <= test - 230) snowman.isJumping = false;
+
+		snowmanXY(30, snowman.y_);
+
+		//나무 움직임
+		if (tree.x_ <= 0) tree.x_ = WIDTH;
+		else tree.x_ -= tree.treeSpeed_;
+
+		treeXY(tree.x_, 300);
+
+		//충돌시 게임 오버
+		if ((tree.tree_.getGlobalBounds()).intersects(snowman.snowman_.getGlobalBounds())){
+			cout << "충돌" << endl;
+			Gameover over;
+			over.gameover();
+		}
 		window.clear();
 		window.draw(img_back);
 		window.draw(snowman.snowman_);

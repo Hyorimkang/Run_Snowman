@@ -14,5 +14,6 @@ class Play {
 public:
 	void snowmanXY(int x, int y);
 	void treeXY(int x, int y);
+	bool isColliding(Sprite charactor, Sprite odstacle);
 	void game();
 };

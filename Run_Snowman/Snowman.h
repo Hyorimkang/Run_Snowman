@@ -13,5 +13,5 @@ public:
 	Sprite snowman_;
 	bool isBottom = true;
 	bool isJumping = false;
-	const int gravity = 30;
+	const int gravity = 15;
 };
