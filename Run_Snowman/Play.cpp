@@ -104,6 +104,7 @@ void Play::game() {
 		}
 		if (snowman.y_ <= test - 230) snowman.isJumping = false;
 
+		//점프 후 눈사람 위치 재정의
 		snowmanXY(30, snowman.y_);
 
 		//나무 움직임
@@ -114,7 +115,6 @@ void Play::game() {
 
 		//충돌시 게임 오버
 		if ((tree.tree_.getGlobalBounds()).intersects(snowman.snowman_.getGlobalBounds())){
-			cout << "충돌" << endl;
 			Gameover over;
 			over.gameover();
 		}

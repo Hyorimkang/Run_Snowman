@@ -36,6 +36,7 @@ void Main::start() {
 			if (e.type == Event::Closed)
 				window.close();
 
+			//게임시작 버튼
 			if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
 				Play p;
 				p.game();

@@ -41,6 +41,8 @@ void Gameover::gameover() {
 			if (e.type == Event::Closed)
 				window.close();
 		}
+
+		//버튼 이벤트
 		if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
 			Vector2i mousePosition = Mouse::getPosition(window);
 			if (btn_restart.getGlobalBounds().contains(Vector2f(mousePosition))) {

@@ -34,11 +34,12 @@ void Gameclear :: gameclear() {
 			//윈도우의 x를 눌렀을 때 창이 닫아지도록 
 			if (e.type == Event::Closed)
 				window.close();
+		}
 
-			if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
-				Start s;
+		//버튼이벤트
+		if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
+				Main s;
 				s.start();
-			}
 		}
 		window.clear();
 		window.draw(img_back);
