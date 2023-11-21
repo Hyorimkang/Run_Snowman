@@ -13,7 +13,7 @@ using namespace sf;
 #define WIDTH 1000
 #define HEIGHT 500
 
-void Gameclear :: gameclear() {
+void Gameclear::gameclear() {
 	Texture background;
 	Texture back;
 	background.loadFromFile("img/game_clear_bg.png");
@@ -38,8 +38,8 @@ void Gameclear :: gameclear() {
 
 		//버튼이벤트
 		if (e.type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left) {
-				Main s;
-				s.start();
+			Main s;
+			s.start();
 		}
 		window.clear();
 		window.draw(img_back);

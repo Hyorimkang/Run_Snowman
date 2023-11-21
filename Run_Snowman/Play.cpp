@@ -5,6 +5,7 @@
 #include "Tree.h"
 #include "Play.h"
 #include "Gameover.h"
+#include "Gameclear.h"
 
 using namespace std;
 using namespace sf;
@@ -15,6 +16,7 @@ using namespace sf;
 //전역 변수
 Snowman snowman;
 Tree tree;
+
 
 void Play::snowmanXY(int x, int y) {
 	snowman.x_ = x;
@@ -47,6 +49,10 @@ void Play::game() {
 	//1초 동안 처리하는 횟수 설정
 	window.setFramerateLimit(60);
 
+	Clock clock;
+	
+	
+
 	//이미지 로드
 	Texture background;
 	Texture charactor;
@@ -76,7 +82,6 @@ void Play::game() {
 			//윈도우의 x를 눌렀을 때 창이 닫아지도록 
 			if (e.type == Event::Closed)
 				window.close();
-
 			
 			if (Keyboard::isKeyPressed(Keyboard::Space)) {
 				if (snowman.isBottom && !snowman.isJumping) { //바닥에 있고 점프중이 아닐 때
@@ -84,9 +89,19 @@ void Play::game() {
 					snowman.isBottom = false;
 				}
 			}
-
-			
 		}
+
+		//정수로 초 보기
+		int time = static_cast<int>(clock.getElapsedTime().asSeconds());
+		cout << time << endl;
+
+
+		//TODO: 집에 가도록 house sprite를 띄움
+		if (time == 3) {
+			Gameclear c;
+			c.gameclear();
+		}
+
 		//점프
 		if (snowman.isJumping) {
 			snowman.y_ -= snowman.gravity;
@@ -118,10 +133,12 @@ void Play::game() {
 			Gameover over;
 			over.gameover();
 		}
+
 		window.clear();
 		window.draw(img_back);
 		window.draw(snowman.snowman_);
 		window.draw(tree.tree_);
+		//window.draw(text);
 		window.display();
 
 	}
