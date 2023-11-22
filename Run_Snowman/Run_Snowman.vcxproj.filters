@@ -24,15 +24,9 @@
     <ClCompile Include="Gameover.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Gameclear.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\game_bg.png">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="img\game_clear_bg.png">
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="img\game_over_bg.png">
@@ -65,9 +59,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Gameover.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameclear.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="House.h">

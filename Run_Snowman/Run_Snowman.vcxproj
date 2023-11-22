@@ -133,7 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Gameclear.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -143,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\game_bg.png" />
-    <Image Include="img\game_clear_bg.png" />
     <Image Include="img\game_over_bg.png" />
     <Image Include="img\house.png" />
     <Image Include="img\main_bg.png" />
@@ -151,7 +149,6 @@
     <Image Include="img\tree.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Gameclear.h" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Main.h" />
