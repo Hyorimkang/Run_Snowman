@@ -83,7 +83,7 @@ void Play::game() {
 
 		//화면에 점수 띄우기
 		Font font;
-		font.loadFromFile("C:/Users/PC/Downloads/땅스부대찌개 Bold.ttf");
+		font.loadFromFile("./font/땅스부대찌개 Bold.ttf");
 
 		Text text;
 		text.setFont(font);
