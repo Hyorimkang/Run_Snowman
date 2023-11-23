@@ -16,6 +16,7 @@ void Main::start() {
 	// 창만들기
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Run Snowman");
 
+	//배경 이미지 로드
 	Texture background;
 	Texture btn;
 	background.loadFromFile("img/main_bg.png");

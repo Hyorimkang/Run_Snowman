@@ -12,8 +12,6 @@ using namespace sf;
 
 class Play {
 public:
-	void snowmanXY(int x, int y);
-	void treeXY(int x, int y);
-	void houseXY(int x, int y);
+	//¸â¹öÇÔ¼ö
 	void game();
 };

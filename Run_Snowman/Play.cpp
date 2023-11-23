@@ -3,7 +3,6 @@
 
 #include "Snowman.h"
 #include "Tree.h"
-#include "House.h"
 #include "Play.h"
 #include "Gameover.h"
 
@@ -16,32 +15,22 @@ using namespace sf;
 //전역 변수
 Snowman snowman;
 Tree tree;
-House house;
 
-
-void Play::snowmanXY(int x, int y) {
+//위치 재설정 함수
+void Snowman::snowmanXY(int x, int y) {
 	snowman.x_ = x;
 	snowman.y_ = y;
 
 	snowman.snowman_.setPosition(snowman.x_, snowman.y_);
 }
 
-void Play::treeXY(int x, int y) {
+void Tree::treeXY(int x, int y) {
 	tree.x_ = x;
 	tree.y_ = y;
 
 	tree.tree_.setScale(0.7f, 0.6f);
 	tree.tree_.setPosition(tree.x_, tree.y_);
 }
-
-void Play::houseXY(int x, int y) {
-	house.x_ = x;
-	house.y_ = y;
-
-	house.house_.setScale(0.4f, 0.3f);
-	house.house_.setPosition(house.x_, house.y_);
-}
-
 
 void Play::game() {
 	Clock clock;
@@ -55,26 +44,20 @@ void Play::game() {
 	Texture background;
 	Texture charactor;
 	Texture obstacle1;
-	Texture obstacle2;
 	background.loadFromFile("img/game_bg.png");
 	charactor.loadFromFile("img/snowman.png");
 	obstacle1.loadFromFile("img/tree.png");
-	obstacle2.loadFromFile("img/house.png");
 
 	//Texture를 Sprite로 만들기
 	Sprite img_back = Sprite(background);
 	snowman.snowman_ = Sprite(charactor);
 	tree.tree_ = Sprite(obstacle1);
-	house.house_ = Sprite(obstacle2);
 
 	//눈사람 위치
-	snowmanXY(30, 230);
+	snowman.snowmanXY(30, 230);
 
 	//나무 위치
-	treeXY(1000, 300);
-
-	//집 위치
-	houseXY(1000, 280);
+	tree.treeXY(1000, 300);
 
 	//나무 스피드
 	tree.treeSpeed_ = 10;
@@ -121,7 +104,7 @@ void Play::game() {
 		if (tree.x_ <= 0) tree.x_ = WIDTH;
 		else tree.x_ -= tree.treeSpeed_;
 
-		treeXY(tree.x_, 300);
+		tree.treeXY(tree.x_, 300);
 
 		//점프
 		if (snowman.isJumping) {
@@ -141,10 +124,10 @@ void Play::game() {
 		if (snowman.y_ <= test - 230) snowman.isJumping = false;
 
 		//점프 후 눈사람 위치 재정의
-		snowmanXY(30, snowman.y_);
+		snowman.snowmanXY(30, snowman.y_);
 
 		//장애물과 충돌시 게임 오버
-		if ((tree.tree_.getGlobalBounds()).intersects(snowman.snowman_.getGlobalBounds()) || (house.house_.getGlobalBounds()).intersects(snowman.snowman_.getGlobalBounds())){
+		if ((tree.tree_.getGlobalBounds()).intersects(snowman.snowman_.getGlobalBounds())){
 			Gameover over;
 			over.gameover();
 		}
@@ -153,7 +136,6 @@ void Play::game() {
 		window.draw(img_back);
 		window.draw(snowman.snowman_);
 		window.draw(tree.tree_);
-		//window.draw(house.house_);
 		window.draw(text);
 		window.display();
 

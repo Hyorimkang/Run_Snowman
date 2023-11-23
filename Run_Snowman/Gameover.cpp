@@ -7,7 +7,6 @@
 #include "Gameover.h"
 #include "Play.h"
 
-
 using namespace std;
 using namespace sf;
 
@@ -19,10 +18,12 @@ void Gameover::gameover() {
 	Texture back;
 	Texture restart;
 
+	//이미지 로드
 	background.loadFromFile("img/game_over_bg.png");
 	back.loadFromFile("img/btnmain.png");
 	restart.loadFromFile("img/btnrestart.png");
 
+	//Texture Sprite로 전환
 	Sprite img_back = Sprite(background);
 	Sprite btn_back = Sprite(back);
 	Sprite btn_restart = Sprite(restart);

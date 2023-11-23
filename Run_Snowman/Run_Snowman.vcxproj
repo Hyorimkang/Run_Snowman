@@ -150,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gameover.h" />
-    <ClInclude Include="House.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Snowman.h" />
